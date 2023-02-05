@@ -20,7 +20,7 @@ class DemoGeneralSettingsTableSeeder extends Seeder
                 'id' => 1,
                 'key' => 'company_name',
                 'display_name' => 'Company Name',
-                'value' => 'Acculance',
+                'value' => 'Traders',
                 'created_at' => null,
                 'updated_at' => null,
             ],

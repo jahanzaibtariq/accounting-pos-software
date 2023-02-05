@@ -51,6 +51,7 @@ class InvoiceController extends Controller
             'selectedProducts' => 'required|array|min:1',
             'selectedProducts.*' => 'required|distinct',
             'discount' => $request->discountType == true ? 'nullable|numeric|min:1|max:100' : 'nullable|numeric|min:1|max:'.$request->subTotal,
+            'scheme' => $request->schemeType == true ? 'nullable|numeric|min:1|max:100' : 'nullable|numeric|min:1|max:'.$request->subTotal,
             'transportCost' => 'nullable|numeric|min:1',
             'orderTax' => 'required',
             'netTotal' => 'required|numeric|min:1',
@@ -64,7 +65,7 @@ class InvoiceController extends Controller
             'date' => 'nullable|date_format:Y-m-d',
             'note' => 'nullable|string|max:255',
         ]);
-        //return $request;
+        // return $request;
 
         try {
             // generate code
@@ -89,8 +90,14 @@ class InvoiceController extends Controller
                 $discount = $request->totalDiscount;
             }
 
+            // calculate scheme
+            $scheme = $request->scheme;
+            if ($request->schemeType == 1) {
+                $scheme = $request->totalScheme;
+            }
+
             // create invoice
-            //return $request->all();
+            // return $request->all();
             $invoice = Invoice::create([
                 'invoice_no' => $code,
                 'reference' => $request->reference,
@@ -99,6 +106,8 @@ class InvoiceController extends Controller
                 'transport' => $request->transportCost,
                 'discount_type' => $request->discountType,
                 'discount' => $discount,
+                'scheme_type' => $request->schemeType,
+                'scheme' => $scheme,
                 'sub_total' => $request->subTotal,
                 'po_reference' => $request->poReference,
                 'payment_terms' => $request->paymentTerms,

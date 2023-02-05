@@ -95,7 +95,8 @@
               <div class="form-group col-md-6 col-lg-6">
                 <label for="discountType">{{
                     $t('common.discount_type')
-                  }}</label>
+                  }}
+                </label>
                 <select id="discountType" v-model="form.discountType" step="any" class="form-control"
                         :class="{ 'is-invalid': form.errors.has('discountType') }" name="discountType"
                         @change="calculateSum"
@@ -120,6 +121,36 @@
                   </div>
                 </div>
                 <has-error :form="form" field="discount"/>
+              </div>
+              <div class="form-group col-md-6 col-lg-6">
+                <label for="schemeType">{{
+                    $t('common.scheme_type')
+                  }}
+                </label>
+                <select id="schemeType" v-model="form.schemeType" step="any" class="form-control"
+                        :class="{ 'is-invalid': form.errors.has('schemeType') }" name="schemeType"
+                        @change="calculateSum"
+                        @keyup="calculateSum">
+                  <option value="0">{{ $t('common.fixed') }}</option>
+                  <option value="1">{{ $t('common.percentage') }}(%)</option>
+                </select>
+                <has-error :form="form" field="schemeType"/>
+              </div>
+              <div class="form-group col-md-6 col-lg-6">
+                <label for="scheme">{{ $t('common.scheme') }}
+                  <span v-if="form.schemeType == 1">(%)</span></label>
+                <div class="input-group">
+                  <input id="scheme" v-model="form.scheme" type="number" step="any" min="1"
+                         :max="form.schemeType == 1 ? 100 : form.subTotal" class="form-control"
+                         :class="{ 'is-invalid': form.errors.has('scheme') }" name="scheme"
+                         :placeholder="$t('common.scheme_placeholder')" @change="calculateSum" @keyup="calculateSum"/>
+                  <div v-if="form.schemeType == 1" class="input-group-append">
+                    <span class="input-group-text">{{
+                        form.totalScheme | withCurrency
+                      }}</span>
+                  </div>
+                </div>
+                <has-error :form="form" field="scheme"/>
               </div>
               <div class="form-group col-md-6 col-lg-6">
                 <label for="transportCost">{{
@@ -506,6 +537,9 @@ export default {
       discountType: 0,
       discount: '',
       totalDiscount: '',
+      schemeType: 0,
+      scheme: '',
+      totalScheme: '',
       transportCost: '',
       orderTax: '',
       totalTax: 0,
@@ -582,13 +616,6 @@ export default {
     document.body.classList.add('sidebar-collapse')
   },
   watch: {
-    // 'form.netTotal': function (newVal, OldVal) {
-    //   console.log('from watcher')
-    //   window.addEventListener("keypress", e => {
-    //     console.log('h');
-    //   });
-    // },
-    // watch search data
     query: function (newQ, oldQ) {
       if (newQ === '') {
         this.searchProducts()
@@ -599,7 +626,7 @@ export default {
   },
   methods: {
     doThis() {
-      console.log('do this')
+      console.log('Calling 629')
     },
     // get all clients
     async getClients() {
@@ -948,11 +975,19 @@ export default {
         } else {
           discount = Number(this.form.discount)
         }
+        let scheme = Number(this.form.scheme)
+        if (this.form.schemeType == 1) {
+          scheme = (scheme / 100) * this.form.subTotal
+          this.form.totalScheme = Number(scheme.toFixed(2))
+        } else {
+          scheme = Number(this.form.scheme)
+        }
         this.form.netTotal =
           this.form.subTotal +
           Number(this.form.transportCost) -
           discount +
-          this.form.totalTax
+          this.form.totalTax -
+          scheme
       }
       return
     },

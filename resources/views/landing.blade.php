@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Acculance | Ultimate Sales, Inventory, Accounting Management System</title>
-  <meta name="description" content="Acculance is an all-in-one management system that enables you to manage expenses, purchases, sales, payments, accounting, loans, assets, payroll, and many more." />
-  <meta name="author" content="CODESHAPER">
+  <title>Star Traders</title>
+  <meta name="description" content="Star Traders" />
+  <meta name="author" content="Jahanzaib">
   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('landing-assets/images/favicon.svg') }}" />
   <!-- ========================= CSS here ========================= -->
   <link rel="stylesheet" href="{{ asset('landing-assets/css/bootstrap.min.css') }}" />
@@ -75,9 +75,6 @@
                 </li>
               </ul>
             </div> <!-- navbar collapse -->
-            <div class="button add-list-button">
-              <a href="https://codecanyon.net/item/acculance-ultimate-sales-inventory-accounting-management-system/37545480" class="btn">Buy now</a>
-            </div>
           </nav>
           <!-- End Navbar -->
         </div>
@@ -93,8 +90,7 @@
     <div class="row align-items-center">
       <div class="col-lg-5 col-md-12 col-12">
         <div class="hero-content">
-          <h1 class="wow fadeInLeft" data-wow-delay=".4s">Acculance.</h1>
-          <p class="wow fadeInLeft" data-wow-delay=".6s">Acculance is an all-in-one management system that enables you to manage expenses, purchases, sales, payments, accounting, loans, assets, payroll, and many more.</p>
+          <h1 class="wow fadeInLeft" data-wow-delay=".4s">Star Traders.</h1>
           <ul class="header-features">
             <li class="wow fadeInLeft" data-wow-delay=".6s">
               <a href="#">Blazing Fast</a>

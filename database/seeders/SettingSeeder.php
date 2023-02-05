@@ -19,7 +19,7 @@ class SettingSeeder extends Seeder
 
             // seed basic data to table
             $settingElemetns = [
-                'company_name' => 'Acculance',
+                'company_name' => 'Traders',
                 'company_tagline' => 'Ultimate Sales, Inventory, Accounting Management System',
                 'email_address' => 'support@codeshape.net',
                 'phone_number' => '0170000000',

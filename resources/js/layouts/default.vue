@@ -14,8 +14,8 @@
     <footer class="main-footer">
       <strong v-if="appInfo">{{ appInfo.copyright }}.</strong>
       Developed by
-      <a href="https://codeshaper.net/" target="__blank">Codeshaper</a>
-      <div class="float-right d-none d-sm-inline-block"><b>Version</b> 1.0</div>
+      <a href="https://github.com/jahanzaibtariq" target="__blank">Jahanzaib</a>
+      <div class="float-right d-none d-sm-inline-block"><b>Version</b> 1.1</div>
     </footer>
 
     <!-- Control Sidebar -->
